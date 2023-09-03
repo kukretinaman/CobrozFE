@@ -61,7 +61,7 @@ body, ul {
 
 /* Button styling */
 .join-button {
-  display: flex;
+  /* display: flex; */
   padding: 23px 32px;
   justify-content: center;
   align-items: center;
