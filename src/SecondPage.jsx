@@ -1,68 +1,77 @@
-  // SecondPage.jsx
-  import React from 'react';
-  import { Outlet } from 'react-router-dom';
-  import Navbar from './Navbar.jsx';
-  import './styles/SecondPage.css'; // Import the CSS file
+// SecondPage.jsx
 
-  const SecondPage = () => {
-    return (
-      <div className="second-page">
-        <Navbar />
+import React, { useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import Navbar from './Navbar.jsx';
+import './styles/SecondPage.css'; // Import the CSS file
 
+const SecondPage = () => {
+  const [commentText, setCommentText] = useState('');
+  const [comments, setComments] = useState([]);
 
-        <div className="container">
-            <div className="left-menu">
-            <ul>
-              <li>Profile</li>
-              <li>Notifications</li>
-              <li>Settings</li>
-              <li>Chat</li>
-            </ul>
-            </div>
-
-
-
-          
-          {/* Content area */}
-          <div className="comment-section">
-          {/* Text input for posting comments */}
-            <div className="post-comment">
-              <input type="text" placeholder="What's on your mind?" />
-              <button className="post-button">Post</button>
-            </div>
-
-
-
-
-            
-          {/* List of posted comments */}
-          <div className="comment-list">
-            {/* Individual comments */}
-            {/* Include upvote, downvote, comment, and share buttons for each comment */}
-            <div className="comment">
-              <div className="comment-content">
-                {/* Display the comment text here */}
-                1: Query by a user.
-                  </div>
-                    <div className="comment-buttons">
-                      <button className="upvote">Upvote</button>
-                      <button className="downvote">Downvote</button>
-                      <button className="comment">Comment</button>
-                      <button className="share">Share</button>
-                    </div>
-                  </div>
-
-            
-                {/* Repeat the above structure for multiple comments */}
-
-
-            
-              </div>
-            </div>
-          <Outlet /> {/* This renders child routes */}
-          </div>
-        </div>
-    );
+  const handleCommentTextChange = (e) => {
+    setCommentText(e.target.value);
   };
 
-  export default SecondPage;
+  const handlePostComment = () => {
+    // Create a new comment object
+    const newComment = {
+      id: new Date().getTime(), // Generate a unique ID (you can use a library for this)
+      text: commentText,
+    };
+
+    // Add the new comment to the list of comments
+    setComments([...comments, newComment]);
+
+    // Clear the comment text field
+    setCommentText('');
+  };
+
+  return (
+    <div className="second-page">
+      <Navbar />
+
+      <div className="container">
+        <div className="left-menu">
+          <ul>
+            <li>Profile</li>
+            <li>Notifications</li>
+            <li>Settings</li>
+            <li>Chat</li>
+          </ul>
+        </div>
+
+        <div className="comment-section">
+          <div className="post-comment">
+            <input
+              type="text"
+              placeholder="What's on your mind?"
+              value={commentText}
+              onChange={handleCommentTextChange}
+            />
+            <button className="post-button" onClick={handlePostComment}>
+              Post
+            </button>
+          </div>
+
+          <div className="comment-list">
+            {comments.map((comment) => (
+              <div className="comment" key={comment.id}>
+                <div className="comment-content">{comment.text}</div>
+                <div className="comment-buttons">
+                  <button className="upvote">Upvote</button>
+                  <button className="downvote">Downvote</button>
+                  <button className="commentbt">Comment</button>
+                  <button className="share">Share</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <Outlet />
+      </div>
+    </div>
+  );
+};
+
+export default SecondPage;

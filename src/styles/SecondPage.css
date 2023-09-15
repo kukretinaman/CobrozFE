@@ -64,12 +64,109 @@ body, ul {
 .comment-section {
   flex-grow: 1; /* Allow the comment section to grow and fill the remaining space */
   padding: 20px;
-  /* Add other styling for the comment section */
+  display: flex;
+  flex-direction: column;
 }
 
-/* Footer styling */
-.footer {
-  background-color: darkviolet;
-  color: white;
-  padding: 20px;
+/* Text input for posting comments */
+.post-comment {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.post-comment input[type="text"] {
+  flex-grow: 1;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.post-button {
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: #7649D6;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: #FFF;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.post-button:hover {
+  background-color: darkblue;
+}
+
+/* Comment list styling */
+.comment-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Comment styling */
+/* SecondPage.css */
+
+/* ... (existing styles) */
+
+/* Comment styling */
+.comment {
+  padding: 10px 20px;
+  background-color: #a9a7a7;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; /* Change to column layout */
+  justify-content: space-between; /* Space evenly between content and buttons */
+  align-items: flex-start; /* Align buttons to the left */
+  max-width: 100%;
+  /* Remove fixed height */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds max-height */
+}
+
+.comment-content {
+  font-size: 1.4rem;
+  color: black;
+  margin-bottom: 10px;
+  /* Remove fixed height and allow content to expand vertically */
+  /* Remove width property */
+  /* Remove word-wrap property */
+  /* Remove max-height property */
+  /* Remove overflow-y property */
+}
+
+.comment-buttons {
+  display: flex;
+  gap: 10px; /* Adjust the horizontal gap between buttons */
+  align-self: flex-end; /* Align buttons to the right within the comment box */
+}
+
+/* Style individual buttons within comments as needed */
+.upvote,
+.downvote,
+.commentbt,
+.share {
+  
+  border-radius: 10px;
+  padding: 10px 20px;
+  background-color: #6e6e8c;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: #FFF;
+  font-size: 1rem;
+  font-weight: 600;
+  max-width: 100%;
+  white-space: nowrap; /* Prevent text from wrapping to the next line */
+  overflow: hidden; /* Hide any overflow text */
+  text-overflow: ellipsis; /* Show ellipsis (...) for long button text */
+}
+
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+  /* Reduce button padding and font size for smaller screens */
+  .upvote,
+  .downvote,
+  .comment,
+  .share {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
 }
